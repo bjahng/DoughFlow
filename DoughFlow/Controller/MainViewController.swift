@@ -23,7 +23,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        subscribeToKeyboardNotifications()
+        //subscribeToKeyboardNotifications()
         
         if let dollarsSet = defaults.object(forKey: "dollarsPerYear") as! String! {
             dollarsPerYearText.text = dollarsSet
@@ -36,7 +36,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        unsubscribeFromKeyboardNotifications()
+        //unsubscribeFromKeyboardNotifications()
     }
 
     @IBAction func submitButton(_ sender: UIButton) {
@@ -56,33 +56,33 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
-    // MARK: - keyboard control methods
+    // MARK: - Keyboard helper methods
     
-    func subscribeToKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
-    }
-    
-    func unsubscribeFromKeyboardNotifications() {
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
-    }
-    
-    @objc func keyboardWillShow(_ notification: Notification) {
-        if hoursPerWeekText.isFirstResponder {
-            view.frame.origin.y = -getKeyboardHeight(notification)
-        }
-    }
-    
-    @objc func keyboardWillHide(_ notification: Notification) {
-        view.frame.origin.y = 0
-    }
-    
-    func getKeyboardHeight(_ notification: Notification) -> CGFloat {
-        let userInfo = notification.userInfo
-        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
-        return keyboardSize.cgRectValue.height
-    }
+//    func subscribeToKeyboardNotifications() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+//    }
+//
+//    func unsubscribeFromKeyboardNotifications() {
+//        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+//    }
+//
+//    @objc func keyboardWillShow(_ notification: Notification) {
+//        if hoursPerWeekText.isFirstResponder {
+//            view.frame.origin.y = -getKeyboardHeight(notification)
+//        }
+//    }
+//
+//    @objc func keyboardWillHide(_ notification: Notification) {
+//        view.frame.origin.y = 0
+//    }
+//
+//    func getKeyboardHeight(_ notification: Notification) -> CGFloat {
+//        let userInfo = notification.userInfo
+//        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+//        return keyboardSize.cgRectValue.height
+//    }
     
     // MARK: - textField data model method
     
