@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class AddItemViewController: UIViewController, UITextFieldDelegate {
     
@@ -31,7 +32,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
     @IBAction func addButton(_ sender: UIButton) {
         if itemText.text! == "" {
             displayAlert("Please enter a valid item")
-        } else if priceText.text! == "" || Int(priceText.text!) == 0 || !isStringAnInt(string: priceText.text!) {
+        } else if Int(priceText.text!) == 0 || !isStringAnInt(string: priceText.text!) {
             displayAlert("Please enter a valid price")
         } else {
             do {
@@ -39,6 +40,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
                     let newItem = Item()
                     newItem.title = itemText.text!
                     newItem.price = priceText.text!
+                    newItem.backgroundColor = UIColor.flatGreen.hexValue()
                     self.realm.add(newItem)
                     
                     navigationController?.popViewController(animated: true)

@@ -35,9 +35,15 @@ class ItemListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
         
-        cell.textLabel?.text = items?[indexPath.row].title
-        if let price = items?[indexPath.row].price {
-            cell.detailTextLabel?.text = "$\(price)"
+        if let item = items?[indexPath.row] {
+            cell.textLabel?.text = item.title
+            cell.detailTextLabel?.text = "$\(item.price)"
+            
+            if let color = UIColor(hexString: item.backgroundColor)?.darken(byPercentage: CGFloat(indexPath.row)/CGFloat(items!.count)) {
+                cell.backgroundColor = color
+                cell.textLabel?.textColor = ContrastColorOf(color, returnFlat: true)
+                cell.detailTextLabel?.textColor = ContrastColorOf(color, returnFlat: true)
+            }
         }
         
         return cell
