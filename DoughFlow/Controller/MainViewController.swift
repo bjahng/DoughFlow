@@ -29,7 +29,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             dollarsPerYearText.text = dollarsSet
         }
         
-        if let hoursSet = defaults.object(forKey: "hoursPerYear") as! String! {
+        if let hoursSet = defaults.object(forKey: "hoursPerWeek") as! String! {
             hoursPerWeekText.text = hoursSet
         }
     }
@@ -47,7 +47,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             displayAlert("Please enter a valid hours/week worked")
         } else {
             defaults.set(dollarsPerYearText.text, forKey: "dollarsPerYear")
-            defaults.set(hoursPerWeekText.text, forKey: "hoursPerYear")
+            defaults.set(hoursPerWeekText.text, forKey: "hoursPerWeek")
             displayAlert("Salary and hours/week data saved!")
         }
     }

@@ -24,10 +24,14 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
         super.viewWillDisappear(animated)
     }
     
+    func isStringAnInt(string: String) -> Bool {
+        return Int(string) != nil
+    }
+    
     @IBAction func addButton(_ sender: UIButton) {
         if itemText.text! == "" {
             displayAlert("Please enter a valid item")
-        } else if priceText.text! == "" || Int(priceText.text!)! == 0 {
+        } else if priceText.text! == "" || Int(priceText.text!) == 0 || !isStringAnInt(string: priceText.text!) {
             displayAlert("Please enter a valid price")
         } else {
             do {

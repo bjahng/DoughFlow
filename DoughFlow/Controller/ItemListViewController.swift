@@ -13,6 +13,7 @@ import ChameleonFramework
 class ItemListViewController: UITableViewController {
     
     let realm = try! Realm()
+    let defaults = UserDefaults.standard
     var items: Results<Item>?
     
     override func viewDidLoad() {
@@ -52,10 +53,23 @@ class ItemListViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToItemInfo" {
-            let destinationVC = segue.destination as! ItemInfoViewController
             
+            guard let dollarsPerYear = Double(defaults.object(forKey: "dollarsPerYear") as! String!) else {
+                displayAlert("Please enter your salary first")
+                return
+            }
+            
+            guard let hoursPerWeek = Double(defaults.object(forKey: "hoursPerWeek") as! String!) else {
+                displayAlert("Please enter your hours/week worked first")
+                return
+            }
+            
+            let destinationVC = segue.destination as! ItemInfoViewController
+
             if let indexPath = tableView.indexPathForSelectedRow {
                 destinationVC.selectedItem = items?[indexPath.row]
+                destinationVC.salary = dollarsPerYear
+                destinationVC.hours = hoursPerWeek
             }
         }
     }
