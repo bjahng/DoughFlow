@@ -69,7 +69,7 @@ class ItemListViewController: UITableViewController {
                 } catch {
                     displayAlert("Error deleting item")
                 }
-                tableView.reloadData()
+                loadItems()
             }
         }
     }
@@ -98,7 +98,7 @@ class ItemListViewController: UITableViewController {
     }
     
     func loadItems() {
-        items = realm.objects(Item.self)
+        items = realm.objects(Item.self).sorted(byKeyPath: "dateCreated")
         tableView.reloadData()
     }
     

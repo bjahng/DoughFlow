@@ -17,14 +17,6 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var itemText: UITextField!
     @IBOutlet weak var priceText: UITextField!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
     func isStringAnInt(string: String) -> Bool {
         return Int(string) != nil
     }
@@ -40,6 +32,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
                     let newItem = Item()
                     newItem.title = itemText.text!
                     newItem.price = priceText.text!
+                    newItem.dateCreated = Date()
                     newItem.backgroundColor = UIColor.flatGreen.hexValue()
                     self.realm.add(newItem)
                     
@@ -59,7 +52,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        let invalidCharacters = CharacterSet(charactersIn: "0123456789.").inverted
+        let invalidCharacters = CharacterSet(charactersIn: "0123456789").inverted
         return string.rangeOfCharacter(from: invalidCharacters, options: [], range: string.startIndex ..< string.endIndex) == nil
         
     }

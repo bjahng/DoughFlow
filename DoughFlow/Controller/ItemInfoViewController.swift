@@ -38,13 +38,15 @@ class ItemInfoViewController: UIViewController {
         
         if timeInSeconds < 60 {
             let newTimeInSeconds = Int(timeInSeconds)
-            finalTime = "\n\(newTimeInSeconds) second(s)"
-        }
-        else if timeInSeconds < 3600 {
+            if newTimeInSeconds == 0 {
+                finalTime = "\n less than 1 second"
+            } else {
+                finalTime = "\n\(newTimeInSeconds) second(s)"
+            }
+        } else if timeInSeconds < 3600 {
             let newTimeInMinutes = Int(timeInMinutes)
             finalTime = "about \n\(newTimeInMinutes) minute(s)"
-        }
-        else {
+        } else {
             let newTimeInHours = Int(timeInHours)
             finalTime = "about \n\(newTimeInHours) hour(s)"
         }

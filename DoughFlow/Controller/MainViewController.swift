@@ -48,6 +48,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             defaults.set(hoursPerWeekText.text, forKey: "hoursPerWeek")
             displayAlert("Salary and hours/week data saved!")
         }
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
