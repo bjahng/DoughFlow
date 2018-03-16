@@ -2,67 +2,127 @@
 //  MainViewController.swift
 //  DoughFlow
 //
-//  Created by admin on 3/8/18.
+//  Created by admin on 3/12/18.
 //  Copyright © 2018 DoughDoughTech. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import RealmSwift
+import ChameleonFramework
 
-class MainViewController: UIViewController, UITextFieldDelegate {
-
-    @IBOutlet weak var dollarsPerYearText: UITextField!
-    @IBOutlet weak var hoursPerWeekText: UITextField!
+class MainViewController: UITableViewController {
+    
+    let realm = try! Realm()
     let defaults = UserDefaults.standard
+    var items: Results<Item>?
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        dollarsPerYearText.keyboardType = .numberPad
-        hoursPerWeekText.keyboardType = .numberPad
+        tableView.separatorStyle = .none
+        searchBar.backgroundImage = UIImage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadItems()
+    }
+    
+    // MARK: - tableView Datasource Methods
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items?.count ?? 1
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
         
-        if let dollarsSet = defaults.object(forKey: "dollarsPerYear") as! String! {
-            dollarsPerYearText.text = dollarsSet
+        if let item = items?[indexPath.row] {
+            cell.textLabel?.text = item.title
+            cell.detailTextLabel?.text = "$\(item.price)"
+            
+            if let color = UIColor(hexString: item.backgroundColor)?.darken(byPercentage: CGFloat(indexPath.row)/CGFloat(items!.count)) {
+                cell.backgroundColor = color
+                cell.textLabel?.textColor = ContrastColorOf(color, returnFlat: true)
+                cell.detailTextLabel?.textColor = ContrastColorOf(color, returnFlat: true)
+            }
         }
         
-        if let hoursSet = defaults.object(forKey: "hoursPerWeek") as! String! {
-            hoursPerWeekText.text = hoursSet
+        return cell
+    }
+    
+    //  MARK: - tableView Delegate Methods
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToItemInfo", sender: self)
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            if let itemForDeletion = self.items?[indexPath.row] {
+                do {
+                    try self.realm.write {
+                        self.realm.delete(itemForDeletion)
+                    }
+                } catch {
+                    displayAlert("Error deleting item")
+                }
+                loadItems()
+            }
         }
     }
     
-    func isStringAnInt(string: String) -> Bool {
-        return Int(string) != nil
-    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToItemInfo" {
+            
+            guard let dollarsPerYear = Double(defaults.object(forKey: "dollarsPerYear") as! String!) else {
+                displayAlert("Please enter your salary first")
+                return
+            }
+            
+            guard let hoursPerWeek = Double(defaults.object(forKey: "hoursPerWeek") as! String!) else {
+                displayAlert("Please enter your hours/week worked first")
+                return
+            }
+            
+            let destinationVC = segue.destination as! ItemInfoViewController
 
-    @IBAction func submitButton(_ sender: UIButton) {
-        
-        if Int(dollarsPerYearText.text!) == 0 || !isStringAnInt(string: dollarsPerYearText.text!) {
-            displayAlert("Please enter a valid salary")
-        } else if Int(hoursPerWeekText.text!) == 0 || !isStringAnInt(string: hoursPerWeekText.text!){
-            displayAlert("Please enter a valid hours/week worked")
-        } else {
-            defaults.set(dollarsPerYearText.text, forKey: "dollarsPerYear")
-            defaults.set(hoursPerWeekText.text, forKey: "hoursPerWeek")
-            displayAlert("Salary and hours/week data saved!")
+            if let indexPath = tableView.indexPathForSelectedRow {
+                destinationVC.selectedItem = items?[indexPath.row]
+                destinationVC.salary = dollarsPerYear
+                destinationVC.hours = hoursPerWeek
+            }
         }
-
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
+    func loadItems() {
+        items = realm.objects(Item.self).sorted(byKeyPath: "dateCreated")
+        tableView.reloadData()
     }
     
-    // MARK: - textField data model method
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        let invalidCharacters = CharacterSet(charactersIn: "0123456789").inverted
-        return string.rangeOfCharacter(from: invalidCharacters, options: [], range: string.startIndex ..< string.endIndex) == nil
-        
-    }
-
 }
 
+// MARK: - SearchBar methods
+
+extension MainViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        items = items?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
+        
+        tableView.reloadData()
+        
+        if searchBar.text?.count == 0 {
+            loadItems()
+            
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+    }
+    
+}

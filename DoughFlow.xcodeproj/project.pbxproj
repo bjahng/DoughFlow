@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		5D4B55B64E04DAD822B3F0A0 /* Pods_DoughFlow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537377BCA694C1D17812B600 /* Pods_DoughFlow.framework */; };
 		847CAE8920572F050087AF6D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CAE8820572F050087AF6D /* Item.swift */; };
-		847CAE8B20572F820087AF6D /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CAE8A20572F820087AF6D /* ItemListViewController.swift */; };
+		847CAE8B20572F820087AF6D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CAE8A20572F820087AF6D /* MainViewController.swift */; };
 		847CAE8D20573BDC0087AF6D /* ItemInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CAE8C20573BDC0087AF6D /* ItemInfoViewController.swift */; };
 		847CAE8F2057874F0087AF6D /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CAE8E2057874F0087AF6D /* AddItemViewController.swift */; };
 		84813D922051AFA90045D56C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84813D912051AFA90045D56C /* AppDelegate.swift */; };
-		84813D942051AFA90045D56C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84813D932051AFA90045D56C /* MainViewController.swift */; };
+		84813D942051AFA90045D56C /* SalaryInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84813D932051AFA90045D56C /* SalaryInfoViewController.swift */; };
 		84813D972051AFA90045D56C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84813D952051AFA90045D56C /* Main.storyboard */; };
 		84813D992051AFA90045D56C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84813D982051AFA90045D56C /* Assets.xcassets */; };
 		84813D9C2051AFA90045D56C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84813D9A2051AFA90045D56C /* LaunchScreen.storyboard */; };
@@ -25,12 +25,12 @@
 		4B658C2E0B4EBF5A92E6186B /* Pods-DoughFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoughFlow.release.xcconfig"; path = "Pods/Target Support Files/Pods-DoughFlow/Pods-DoughFlow.release.xcconfig"; sourceTree = "<group>"; };
 		537377BCA694C1D17812B600 /* Pods_DoughFlow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoughFlow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		847CAE8820572F050087AF6D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		847CAE8A20572F820087AF6D /* ItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewController.swift; sourceTree = "<group>"; };
+		847CAE8A20572F820087AF6D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		847CAE8C20573BDC0087AF6D /* ItemInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfoViewController.swift; sourceTree = "<group>"; };
 		847CAE8E2057874F0087AF6D /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		84813D8E2051AFA90045D56C /* DoughFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoughFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84813D912051AFA90045D56C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		84813D932051AFA90045D56C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		84813D932051AFA90045D56C /* SalaryInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalaryInfoViewController.swift; sourceTree = "<group>"; };
 		84813D962051AFA90045D56C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84813D982051AFA90045D56C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84813D9B2051AFA90045D56C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -110,9 +110,9 @@
 		84813DA42051BA1E0045D56C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				84813D932051AFA90045D56C /* MainViewController.swift */,
+				847CAE8A20572F820087AF6D /* MainViewController.swift */,
+				84813D932051AFA90045D56C /* SalaryInfoViewController.swift */,
 				84813DA52052FBAD0045D56C /* UIViewControllerExtension.swift */,
-				847CAE8A20572F820087AF6D /* ItemListViewController.swift */,
 				847CAE8C20573BDC0087AF6D /* ItemInfoViewController.swift */,
 				847CAE8E2057874F0087AF6D /* AddItemViewController.swift */,
 			);
@@ -262,8 +262,8 @@
 			files = (
 				847CAE8920572F050087AF6D /* Item.swift in Sources */,
 				847CAE8D20573BDC0087AF6D /* ItemInfoViewController.swift in Sources */,
-				847CAE8B20572F820087AF6D /* ItemListViewController.swift in Sources */,
-				84813D942051AFA90045D56C /* MainViewController.swift in Sources */,
+				847CAE8B20572F820087AF6D /* MainViewController.swift in Sources */,
+				84813D942051AFA90045D56C /* SalaryInfoViewController.swift in Sources */,
 				847CAE8F2057874F0087AF6D /* AddItemViewController.swift in Sources */,
 				84813D922051AFA90045D56C /* AppDelegate.swift in Sources */,
 				84813DA62052FBAD0045D56C /* UIViewControllerExtension.swift in Sources */,
@@ -403,7 +403,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 301C519B706298EA1AB81AA1 /* Pods-DoughFlow.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 54243X79VK;
 				INFOPLIST_FILE = DoughFlow/Info.plist;
@@ -419,7 +418,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4B658C2E0B4EBF5A92E6186B /* Pods-DoughFlow.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 54243X79VK;
 				INFOPLIST_FILE = DoughFlow/Info.plist;
