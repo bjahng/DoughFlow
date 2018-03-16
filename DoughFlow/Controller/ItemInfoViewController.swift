@@ -23,7 +23,7 @@ class ItemInfoViewController: UIViewController {
         
         calculateTime()
         
-        infoLabel.text = "You have to work \(finalTime) for you to buy item \(selectedItem.title)"
+        infoLabel.text = "You have to work \(finalTime) for you to buy \(selectedItem.title)."
     }
     
     func calculateTime() {
