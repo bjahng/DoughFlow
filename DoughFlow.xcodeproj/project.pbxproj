@@ -403,6 +403,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 301C519B706298EA1AB81AA1 /* Pods-DoughFlow.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 54243X79VK;
 				INFOPLIST_FILE = DoughFlow/Info.plist;
@@ -418,6 +419,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4B658C2E0B4EBF5A92E6186B /* Pods-DoughFlow.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 54243X79VK;
 				INFOPLIST_FILE = DoughFlow/Info.plist;

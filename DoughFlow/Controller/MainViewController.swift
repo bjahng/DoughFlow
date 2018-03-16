@@ -77,6 +77,10 @@ class MainViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem
+
         if segue.identifier == "goToItemInfo" {
             
             guard let dollarsPerYear = Double(defaults.object(forKey: "dollarsPerYear") as! String!) else {

@@ -46,7 +46,7 @@ class SalaryInfoViewController: UIViewController, UITextFieldDelegate {
         } else {
             defaults.set(dollarsPerYearText.text, forKey: "dollarsPerYear")
             defaults.set(hoursPerWeekText.text, forKey: "hoursPerWeek")
-            displayAlert("Salary and hours/week data saved!")
+            navigationController?.popViewController(animated: true)
         }
 
     }
