@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -64,17 +65,24 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Dough Flow" id="kth-Gq-z3E">
-                        <barButtonItem key="leftBarButtonItem" image="money_bag" id="NNI-Fk-ove">
-                            <connections>
-                                <segue destination="0BM-mf-xMQ" kind="show" id="y8P-sb-97M"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ddJ-F4-4jv">
-                            <color key="tintColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <segue destination="p1w-up-qMI" kind="show" id="1xS-Ct-D4n"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="ddJ-F4-4jv">
+                                <color key="tintColor" red="0.0" green="0.56031829119999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <segue destination="p1w-up-qMI" kind="show" id="1xS-Ct-D4n"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="sort_arrow" id="Z43-XE-10k">
+                                <connections>
+                                    <action selector="sortButtonPressed:" destination="ijB-2A-aJ8" id="rhS-oW-eqp"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="money_bag" id="NNI-Fk-ove">
+                                <connections>
+                                    <segue destination="0BM-mf-xMQ" kind="show" id="y8P-sb-97M"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="Tsu-dw-ZfR" id="kVc-0Z-bd0"/>
@@ -93,7 +101,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHV-zD-A9A">
-                                <rect key="frame" x="20" y="320.5" width="335" height="27"/>
+                                <rect key="frame" x="20" y="320" width="335" height="27"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -236,7 +244,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="R7a-cb-S8C" userLabel="Input Stack View">
-                                <rect key="frame" x="91.5" y="156" width="193" height="157"/>
+                                <rect key="frame" x="91" y="156" width="193" height="157"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="phf-sf-kSG" userLabel="Earn Stack View">
                                         <rect key="frame" x="0.0" y="0.0" width="193" height="63.5"/>
@@ -395,5 +403,6 @@
     <resources>
         <image name="list" width="30" height="30"/>
         <image name="money_bag" width="30" height="30"/>
+        <image name="sort_arrow" width="30" height="30"/>
     </resources>
 </document>

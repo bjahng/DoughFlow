@@ -23,16 +23,16 @@ class ItemInfoViewController: UIViewController {
         
         calculateTime()
         
-        infoLabel.text = "You have to work \(finalTime) for you to buy \(selectedItem.title)."
+        infoLabel.text = "You have to work \(finalTime) to buy \(selectedItem.title)."
     }
     
     func calculateTime() {
         
-        let price = Double(selectedItem.price)!
+        let price = selectedItem.price
         
         let earnInOneSecond: Double = salary!/52/hours!/60/60
         
-        let timeInSeconds: Double = Double(price)/earnInOneSecond
+        let timeInSeconds: Double = price/earnInOneSecond
         let timeInMinutes: Double = timeInSeconds/60
         let timeInHours: Double = timeInSeconds/3600
         

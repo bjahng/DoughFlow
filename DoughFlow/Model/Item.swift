@@ -12,7 +12,7 @@ import RealmSwift
 class Item: Object {
     
     @objc dynamic var title: String = ""
-    @objc dynamic var price: String = ""
+    @objc dynamic var price: Double = 0
     @objc dynamic var dateCreated: Date?
     @objc dynamic var backgroundColor: String = ""
     

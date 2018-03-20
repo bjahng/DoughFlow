@@ -28,10 +28,17 @@ class MainViewController: UITableViewController {
         loadItems()
     }
     
+    @IBAction func sortButtonPressed(_ sender: Any) {
+        if let sortStatusIsDate = defaults.object(forKey: "sortStatusIsDate") as! Bool! {
+            defaults.set(!sortStatusIsDate, forKey: "sortStatusIsDate")
+        }
+        loadItems()
+    }
+    
     // MARK: - tableView Datasource Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items?.count ?? 1
+        return items?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -39,12 +46,16 @@ class MainViewController: UITableViewController {
         
         if let item = items?[indexPath.row] {
             cell.textLabel?.text = item.title
-            cell.detailTextLabel?.text = "$\(item.price)"
+            cell.detailTextLabel?.text = String(format: "$%.02f", item.price)
             
             if let color = UIColor(hexString: item.backgroundColor)?.darken(byPercentage: CGFloat(indexPath.row)/CGFloat(items!.count)) {
                 cell.backgroundColor = color
                 cell.textLabel?.textColor = ContrastColorOf(color, returnFlat: true)
                 cell.detailTextLabel?.textColor = ContrastColorOf(color, returnFlat: true)
+                
+                let backgroundView = UIView()
+                backgroundView.backgroundColor = color
+                cell.selectedBackgroundView = backgroundView
             }
         }
         
@@ -83,12 +94,12 @@ class MainViewController: UITableViewController {
 
         if segue.identifier == "goToItemInfo" {
             
-            guard let dollarsPerYear = Double(defaults.object(forKey: "dollarsPerYear") as! String!) else {
+            guard let dollarsPerYear = defaults.object(forKey: "dollarsPerYear") as? String else {
                 displayAlert("Please enter your salary first")
                 return
             }
             
-            guard let hoursPerWeek = Double(defaults.object(forKey: "hoursPerWeek") as! String!) else {
+            guard let hoursPerWeek = defaults.object(forKey: "hoursPerWeek") as? String else {
                 displayAlert("Please enter your hours/week worked first")
                 return
             }
@@ -97,14 +108,18 @@ class MainViewController: UITableViewController {
 
             if let indexPath = tableView.indexPathForSelectedRow {
                 destinationVC.selectedItem = items?[indexPath.row]
-                destinationVC.salary = dollarsPerYear
-                destinationVC.hours = hoursPerWeek
+                destinationVC.salary = Double(dollarsPerYear)
+                destinationVC.hours = Double(hoursPerWeek)
             }
         }
     }
     
     func loadItems() {
-        items = realm.objects(Item.self).sorted(byKeyPath: "dateCreated")
+        if let sortStatusIsDate = defaults.object(forKey: "sortStatusIsDate") as! Bool! {
+            items = sortStatusIsDate ? realm.objects(Item.self).sorted(byKeyPath: "dateCreated") : realm.objects(Item.self).sorted(byKeyPath: "price", ascending: false)
+        } else {
+            defaults.set(true, forKey: "sortStatusIsDate")
+        }
         tableView.reloadData()
     }
     
@@ -116,7 +131,10 @@ extension MainViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        items = items?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
+        if let sortStatusIsDate = defaults.object(forKey: "sortStatusIsDate") as! Bool! {
+            let byKeyPath = sortStatusIsDate ? "dateCreated" : "price"
+            items = items?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: byKeyPath, ascending: sortStatusIsDate)
+        }
         
         tableView.reloadData()
         
