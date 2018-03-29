@@ -2,6 +2,7 @@
 DoughFlow is a simple app that will keep track of your shopping list while telling you exactly how much you have to work to afford each item.
 
 ![alt text](https://github.com/bjahng/DoughFlow/blob/master/Screenshots/Main.png)
+![alt text](https://github.com/bjahng/DoughFlow/blob/master/Screenshots/ItemInfo.png)
 
 ## Installation
 Install DoughFlow to your phone from the App Store: https://itunes.apple.com/us/app/dough-flow-free-simple-tool-to-help-save-and-manage-money/id1114133528
@@ -13,7 +14,6 @@ Install DoughFlow to your phone from the App Store: https://itunes.apple.com/us/
 
 ![alt text](https://github.com/bjahng/DoughFlow/blob/master/Screenshots/Salary.png)
 ![alt text](https://github.com/bjahng/DoughFlow/blob/master/Screenshots/AddItem.png)
-![alt text](https://github.com/bjahng/DoughFlow/blob/master/Screenshots/ItemInfo.png)
 
 ## Built With
  - RealmSwift - for data persistence
