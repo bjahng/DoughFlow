@@ -39,7 +39,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate {
                     navigationController?.popViewController(animated: true)
                 }
             } catch {
-                print("Error saving item: \(error)")
+                displayAlert("Error saving item: \(error)")
             }
         }
     }
