@@ -5,7 +5,9 @@ DoughFlow is a simple app that will keep track of your shopping list while telli
 ![ItemInfo](https://github.com/bjahng/DoughFlow/blob/master/Screenshots/ItemInfo.png)
 
 ## Installation
-Install DoughFlow to your phone from the App Store: https://itunes.apple.com/us/app/dough-flow-free-simple-tool-to-help-save-and-manage-money/id1114133528
+Install DoughFlow to your phone from the App Store: [DoughFlow](https://itunes.apple.com/us/app/dough-flow-free-simple-tool-to-help-save-and-manage-money/id1114133528)
+
+You can also install DoughFlow by building and running the project in Xcode.
 
 ## Usage
 - Enter your salary information and hours worked per week in "Salary Info" (money bag icon on main screen).
