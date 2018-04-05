@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5D4B55B64E04DAD822B3F0A0 /* Pods_DoughFlow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 537377BCA694C1D17812B600 /* Pods_DoughFlow.framework */; };
-		8477150E2076D61D00E57A85 /* Magneto Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8477150D2076D61C00E57A85 /* Magneto Bold.ttf */; };
 		847CAE8920572F050087AF6D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CAE8820572F050087AF6D /* Item.swift */; };
 		847CAE8B20572F820087AF6D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CAE8A20572F820087AF6D /* MainViewController.swift */; };
 		847CAE8D20573BDC0087AF6D /* ItemInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847CAE8C20573BDC0087AF6D /* ItemInfoViewController.swift */; };
@@ -25,7 +24,6 @@
 		301C519B706298EA1AB81AA1 /* Pods-DoughFlow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoughFlow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DoughFlow/Pods-DoughFlow.debug.xcconfig"; sourceTree = "<group>"; };
 		4B658C2E0B4EBF5A92E6186B /* Pods-DoughFlow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DoughFlow.release.xcconfig"; path = "Pods/Target Support Files/Pods-DoughFlow/Pods-DoughFlow.release.xcconfig"; sourceTree = "<group>"; };
 		537377BCA694C1D17812B600 /* Pods_DoughFlow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DoughFlow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8477150D2076D61C00E57A85 /* Magneto Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Magneto Bold.ttf"; sourceTree = "<group>"; };
 		847CAE8820572F050087AF6D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		847CAE8A20572F820087AF6D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		847CAE8C20573BDC0087AF6D /* ItemInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfoViewController.swift; sourceTree = "<group>"; };
@@ -104,7 +102,6 @@
 		84813DA32051BA150045D56C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8477150D2076D61C00E57A85 /* Magneto Bold.ttf */,
 				84813D952051AFA90045D56C /* Main.storyboard */,
 			);
 			path = View;
@@ -192,7 +189,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8477150E2076D61D00E57A85 /* Magneto Bold.ttf in Resources */,
 				84813D9C2051AFA90045D56C /* LaunchScreen.storyboard in Resources */,
 				84813D992051AFA90045D56C /* Assets.xcassets in Resources */,
 				84813D972051AFA90045D56C /* Main.storyboard in Resources */,
