@@ -20,9 +20,9 @@ You can also install DoughFlow by building and running the project in Xcode.
 ## Built With
  - RealmSwift - for data persistence
  - ChameleonFramework - color framework for iOS
- - Xcode 9.2
+ - Xcode 9.3
  - Swift 4
- 
+
  ## License
 Copyright (c) 2018 Brian Jahng
 

@@ -29,7 +29,7 @@ class MainViewController: UITableViewController {
     }
     
     @IBAction func sortButtonPressed(_ sender: Any) {
-        if let sortStatusIsDate = defaults.object(forKey: "sortStatusIsDate") as! Bool! {
+        if let sortStatusIsDate = defaults.object(forKey: "sortStatusIsDate") as! Bool? {
             defaults.set(!sortStatusIsDate, forKey: "sortStatusIsDate")
         }
         loadItems()
@@ -115,7 +115,7 @@ class MainViewController: UITableViewController {
     }
     
     func loadItems() {
-        if let sortStatusIsDate = defaults.object(forKey: "sortStatusIsDate") as! Bool! {
+        if let sortStatusIsDate = defaults.object(forKey: "sortStatusIsDate") as! Bool? {
             items = sortStatusIsDate ? realm.objects(Item.self).sorted(byKeyPath: "dateCreated") : realm.objects(Item.self).sorted(byKeyPath: "price", ascending: false)
         } else {
             defaults.set(true, forKey: "sortStatusIsDate")
@@ -131,7 +131,7 @@ extension MainViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        if let sortStatusIsDate = defaults.object(forKey: "sortStatusIsDate") as! Bool! {
+        if let sortStatusIsDate = defaults.object(forKey: "sortStatusIsDate") as! Bool? {
             let byKeyPath = sortStatusIsDate ? "dateCreated" : "price"
             items = items?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: byKeyPath, ascending: sortStatusIsDate)
         }

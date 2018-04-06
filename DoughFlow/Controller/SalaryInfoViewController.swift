@@ -24,11 +24,11 @@ class SalaryInfoViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let dollarsSet = defaults.object(forKey: "dollarsPerYear") as! String! {
+        if let dollarsSet = defaults.object(forKey: "dollarsPerYear") as! String? {
             dollarsPerYearText.text = dollarsSet
         }
         
-        if let hoursSet = defaults.object(forKey: "hoursPerWeek") as! String! {
+        if let hoursSet = defaults.object(forKey: "hoursPerWeek") as! String? {
             hoursPerWeekText.text = hoursSet
         }
     }
